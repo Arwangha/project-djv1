@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerCharacter : Entity
 {
     [SerializeField] private float speed = 4f;
-    [SerializeField] private float shotDelay;
     //[SerializeField] private Animator animator;
 
     private Camera _mainCamera;
@@ -15,6 +14,7 @@ public class PlayerCharacter : Entity
 
     private int _runBoolHash;
     private int _shotTrigHash;
+    private Vector3 _movementTarget;
     
     protected void Awake()
     {
@@ -24,6 +24,7 @@ public class PlayerCharacter : Entity
         //_runBoolHash = Animator.StringToHash("IsMoving");
         //_shotTrigHash = Animator.StringToHash("Shoot");
         Instance = this;
+        _movementTarget = transform.position;
     }
 
     protected void Update()
@@ -35,26 +36,31 @@ public class PlayerCharacter : Entity
             var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
             var plane = new Plane(Vector3.up, Vector3.zero);
+            RaycastHit hit;
             if (plane.Raycast(ray, out var x))
             {
-                var targetPosition = ray.GetPoint(x);
-                var position = transform.position;
+                _movementTarget = ray.GetPoint(x);
+                
+            }
 
-                var directionToTarget = targetPosition - position;
-
-                var dot = Vector3.Dot(transform.forward, directionToTarget.normalized);
-                var speedPenalty = (dot + 1f) / 2f;
-
-                var newPosition = Vector3.MoveTowards(position, targetPosition, speedPenalty * speed * Time.deltaTime);
-                _characterController.Move(newPosition - position);
-
-                RotateTowardsTarget(directionToTarget, angularSpeed);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.layer == 6)
+                {
+                    Passenger passenger = hit.collider.gameObject.GetComponent<Passenger>();
+                    passenger.Control();
+                }
             }
         }
 
-        else
-        {
-            //animator.SetBool(_runBoolHash, false);
-        }
+        var position = transform.position;
+
+        var directionToTarget = _movementTarget - position;
+
+        var newPosition = Vector3.MoveTowards(position, _movementTarget, speed * Time.deltaTime);
+        _characterController.Move(newPosition - position);
+
+        RotateTowardsTarget(directionToTarget, angularSpeed);
+
     }
 }
