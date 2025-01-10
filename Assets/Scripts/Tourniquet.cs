@@ -23,7 +23,7 @@ public class Tourniquet : MonoBehaviour
     private IEnumerator UpdateDelay()
     {
         _busy = true;
-        yield return new WaitForSeconds(5*validationTime);
+        yield return new WaitForSeconds(3*validationTime);
         _busy = false;
     }
 

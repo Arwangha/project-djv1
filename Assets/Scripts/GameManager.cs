@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    private int _level;
 
     void Start()
     {
@@ -21,9 +22,9 @@ public class GameManager : MonoBehaviour
     public void StartLevel(int level)
     {
         SceneManager.LoadScene(level);
+        _level = level;
     }
-    
-    // Update is called once per frame
+
     void Update()
     {
         
