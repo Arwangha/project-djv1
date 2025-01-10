@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private Image backgroundImage;
     [SerializeField] private float roundDuration;
+    public int releasedFraudeurs;
+    public int caughtFraudeurs;
     private float _timer;
 
     public bool canAct;
@@ -53,8 +55,13 @@ public class LevelManager : MonoBehaviour
         remainingTime.gameObject.SetActive(false);
         backgroundImage.enabled = true;
         canAct = false;
-        infoText.text = "Temps écoulé ! \n" + scoreText.text;
+        float fractionResult = caughtFraudeurs / (float)releasedFraudeurs * 100f;
+        infoText.text = "Temps écoulé ! \n" + scoreText.text + "\n Soit : " + fractionResult + "%";
         scoreText.text = "";
+        if (fractionResult > 80)
+        {
+            infoText.text = "Temps écoulé ! \n" + scoreText.text + "\n Soit : " + fractionResult + "%" + "\n Bien joué ! + 1 point d'amélioration";
+        }
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);
     }

@@ -8,6 +8,7 @@ public class Tourniquet : MonoBehaviour
     [SerializeField] private GameObject passengerPrefab;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float validationTime;
+    [SerializeField] private int upgradeCost;
     [SerializeField] private float maxTargetX;
     [SerializeField] private float maxTargetZ;
     [SerializeField] private float minTargetX;
@@ -45,8 +46,12 @@ public class Tourniquet : MonoBehaviour
 
     public void Upgrade()
     {
-        _upgraded = true;
-        door.SetActive(true);
+        if (GameManager.UpgradePoints >= upgradeCost && !_upgraded)
+        {
+            _upgraded = true;
+            door.SetActive(true);
+            GameManager.UpgradePoints -= upgradeCost;
+        }
     }
 
     private IEnumerator AddPassenger(int amount)
@@ -87,6 +92,7 @@ public class Tourniquet : MonoBehaviour
         if (passenger.fraudeur)
         {
             StartCoroutine(ShortAlarm());
+            LevelManager.Instance.releasedFraudeurs++;
         }
         StartCoroutine(AddPassenger(1));
         _busy = false;

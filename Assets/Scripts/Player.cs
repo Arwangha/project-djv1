@@ -36,14 +36,15 @@ public class PlayerCharacter : Entity
     {
         if (other.gameObject.layer == 6)
         {
-            Debug.Log("layer6");
+            //Debug.Log("layer6");
             if (other.gameObject.TryGetComponent(out Passenger passenger))
             {
                 if (!passenger.fraudeur) return;
                 passenger.fraudeur = false;
                 passenger.EndControl();
                 _score++;
-                scoreText.text = "Score : " + _score;
+                LevelManager.Instance.caughtFraudeurs++;
+                scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
             }
         }
     }
@@ -70,6 +71,12 @@ public class PlayerCharacter : Entity
                 {
                     Passenger passenger = hit.collider.gameObject.GetComponent<Passenger>();
                     passenger.Control();
+                }
+                
+                else if (hit.collider.gameObject.layer == 7)
+                {
+                    Tourniquet tourniquet = hit.collider.gameObject.GetComponent<Tourniquet>();
+                    
                 }
             }
         }

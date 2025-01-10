@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private int _level;
+    public static int UpgradePoints;
 
     void Start()
     {
