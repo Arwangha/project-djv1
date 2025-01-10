@@ -1,9 +1,14 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerCharacter : Entity
 {
     [SerializeField] private float speed = 4f;
+    [SerializeField] private TMP_Text scoreText;
+
+    private int _score;
     //[SerializeField] private Animator animator;
 
     private Camera _mainCamera;
@@ -27,6 +32,21 @@ public class PlayerCharacter : Entity
         _movementTarget = transform.position;
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            if (other.gameObject.TryGetComponent<Passenger>(out Passenger passenger))
+            {
+                if (!passenger.fraudeur) return;
+                passenger.fraudeur = false;
+                passenger.EndControl();
+                _score++;
+                scoreText.text = "Score : " + _score.ToString();
+            }
+        }
+    }
+
     protected void Update()
     {
         //Debug.Log(CurrentHealth);
@@ -48,7 +68,10 @@ public class PlayerCharacter : Entity
                 if (hit.collider.gameObject.layer == 6)
                 {
                     Passenger passenger = hit.collider.gameObject.GetComponent<Passenger>();
-                    passenger.Control();
+                    if (passenger.Control())
+                    {
+
+                    }
                 }
             }
         }

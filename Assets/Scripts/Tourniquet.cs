@@ -6,6 +6,7 @@ using UnityEngine;
 public class Tourniquet : MonoBehaviour
 {
     [SerializeField] private GameObject passengerPrefab;
+    [SerializeField] private Vector3 offset;
     [SerializeField] private float validationTime;
     [SerializeField] private float maxTargetX;
     [SerializeField] private float maxTargetZ;
@@ -15,7 +16,15 @@ public class Tourniquet : MonoBehaviour
     private bool _busy;
     void Start()
     {
-        AddPassenger(3);
+        StartCoroutine(AddPassenger(3));
+        StartCoroutine(UpdateDelay());
+    }
+
+    private IEnumerator UpdateDelay()
+    {
+        _busy = true;
+        yield return new WaitForSeconds(5*validationTime);
+        _busy = false;
     }
 
     // Update is called once per frame
@@ -24,11 +33,11 @@ public class Tourniquet : MonoBehaviour
         if (!_busy) StartCoroutine(Validation());
     }
 
-    private void AddPassenger(int amount)
+    private IEnumerator AddPassenger(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
-            Passenger passenger = Instantiate(passengerPrefab, transform.position, Quaternion.identity).GetComponent<Passenger>();
+            Passenger passenger = Instantiate(passengerPrefab, transform.position + offset, Quaternion.identity).GetComponent<Passenger>();
             passenger.transform.gameObject.SetActive(true);
             passenger.SetTarget( 
                 new Vector3(Random.Range(minTargetX, maxTargetX), 
@@ -36,6 +45,7 @@ public class Tourniquet : MonoBehaviour
                 Random.Range(minTargetZ, maxTargetZ)));
             _passengers.Add(passenger);
             MoveEveryOneForward();
+            yield return new WaitForSeconds(validationTime);
         }
     }
 
@@ -54,7 +64,7 @@ public class Tourniquet : MonoBehaviour
         Passenger passenger = _passengers.ElementAt(0);
         passenger.hasPassedGate = true;
         _passengers.Remove(passenger);
-        AddPassenger(1);
+        StartCoroutine(AddPassenger(1));
         _busy = false;
     }
 }
