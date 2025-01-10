@@ -58,9 +58,11 @@ public class LevelManager : MonoBehaviour
         float fractionResult = 100f;
         if(releasedFraudeurs > 0) fractionResult = caughtFraudeurs / (float)releasedFraudeurs * 100f;
         infoText.text = "Temps écoulé ! \n" + scoreText.text + "\n Soit : " + fractionResult + "%";
-        if (fractionResult > 40)
+        if (fractionResult > 70)
         {
             GameManager.UpgradePoints++;
+            yield return null;
+            yield return null;
             infoText.text = "Temps écoulé ! \n" + scoreText.text + "\n Soit : " + fractionResult + "%" + "\n Bien joué ! + 1 point d'amélioration";
         }
         scoreText.text = "";

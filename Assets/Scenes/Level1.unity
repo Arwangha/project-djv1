@@ -2055,7 +2055,7 @@ MonoBehaviour:
   infoText: {fileID: 1168405979}
   scoreText: {fileID: 1508534097}
   backgroundImage: {fileID: 789208462}
-  roundDuration: 10
+  roundDuration: 30
   releasedFraudeurs: 0
   caughtFraudeurs: 0
   canAct: 0

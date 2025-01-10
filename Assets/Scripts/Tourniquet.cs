@@ -44,14 +44,17 @@ public class Tourniquet : MonoBehaviour
         alarm.SetActive(false);
     }
 
-    public void Upgrade()
+    public bool Upgrade()
     {
         if (GameManager.UpgradePoints >= upgradeCost && !_upgraded)
         {
             _upgraded = true;
             door.SetActive(true);
             GameManager.UpgradePoints -= upgradeCost;
+            return true;
         }
+
+        return false;
     }
 
     private IEnumerator AddPassenger(int amount)

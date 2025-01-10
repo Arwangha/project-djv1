@@ -51,6 +51,17 @@ public class PlayerCharacter : Entity
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            if (other.gameObject.TryGetComponent(out Passenger passenger))
+            {
+                passenger.EndControl();
+            }
+        }
+    }
+
     protected void Update()
     {
         //Debug.Log(CurrentHealth);
@@ -78,7 +89,10 @@ public class PlayerCharacter : Entity
                 else if (hit.collider.gameObject.layer == 7)
                 {
                     Tourniquet tourniquet = hit.collider.gameObject.GetComponent<Tourniquet>();
-                    
+                    if (tourniquet.Upgrade())
+                    {
+                        scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
+                    }
                 }
             }
         }
@@ -92,5 +106,9 @@ public class PlayerCharacter : Entity
 
         RotateTowardsTarget(directionToTarget, angularSpeed);
 
+        if (!LevelManager.Instance.canAct)
+        {
+            scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
+        }
     }
 }
