@@ -45,7 +45,7 @@ public class LevelManager : MonoBehaviour
         infoText.text = "";
         backgroundImage.enabled = false;
         canAct = true;
-        scoreText.text = "Score : 0";
+        scoreText.text = "Score : 0 " + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
         remainingTime.gameObject.SetActive(true);
     }
     
@@ -55,13 +55,15 @@ public class LevelManager : MonoBehaviour
         remainingTime.gameObject.SetActive(false);
         backgroundImage.enabled = true;
         canAct = false;
-        float fractionResult = caughtFraudeurs / (float)releasedFraudeurs * 100f;
+        float fractionResult = 100f;
+        if(releasedFraudeurs > 0) fractionResult = caughtFraudeurs / (float)releasedFraudeurs * 100f;
         infoText.text = "Temps écoulé ! \n" + scoreText.text + "\n Soit : " + fractionResult + "%";
-        scoreText.text = "";
-        if (fractionResult > 80)
+        if (fractionResult > 40)
         {
+            GameManager.UpgradePoints++;
             infoText.text = "Temps écoulé ! \n" + scoreText.text + "\n Soit : " + fractionResult + "%" + "\n Bien joué ! + 1 point d'amélioration";
         }
+        scoreText.text = "";
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);
     }

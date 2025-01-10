@@ -30,6 +30,8 @@ public class PlayerCharacter : Entity
         //_shotTrigHash = Animator.StringToHash("Shoot");
         Instance = this;
         _movementTarget = transform.position;
+        scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
+        Debug.Log(GameManager.UpgradePoints);
     }
 
     private void OnTriggerEnter(Collider other)

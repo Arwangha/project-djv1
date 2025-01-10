@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
@@ -24,10 +23,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(level);
         _level = level;
-    }
-
-    void Update()
-    {
-        
     }
 }

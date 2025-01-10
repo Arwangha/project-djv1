@@ -2055,7 +2055,9 @@ MonoBehaviour:
   infoText: {fileID: 1168405979}
   scoreText: {fileID: 1508534097}
   backgroundImage: {fileID: 789208462}
-  roundDuration: 30
+  roundDuration: 10
+  releasedFraudeurs: 0
+  caughtFraudeurs: 0
   canAct: 0
 --- !u!4 &755836394
 Transform:
@@ -4196,7 +4198,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -322.94644, y: -99.3637, z: -319.97324, w: -144.09421}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8782,7 +8784,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -253.70056, w: -49.04242}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -11438,6 +11440,10 @@ PrefabInstance:
       propertyPath: alarm
       value: 
       objectReference: {fileID: 1676485651}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: upgradeCost
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3997113616948721853, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.6
