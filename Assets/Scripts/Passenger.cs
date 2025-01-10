@@ -46,7 +46,7 @@ public class Passenger : Entity
 
     private void Update()
     {
-        if (hasPassedGate)
+        if (hasPassedGate && !beingControlled)
         {
             _navMeshAgent.destination = target;
         }

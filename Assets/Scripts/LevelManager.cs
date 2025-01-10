@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator LevelBegin()
     {
+        remainingTime.gameObject.SetActive(false);
         scoreText.text = "";
         infoText.text = "Prêt ?";
         Debug.Log("here");
@@ -43,11 +44,13 @@ public class LevelManager : MonoBehaviour
         backgroundImage.enabled = false;
         canAct = true;
         scoreText.text = "Score : 0";
+        remainingTime.gameObject.SetActive(true);
     }
     
 
     IEnumerator LevelEnd()
     {
+        remainingTime.gameObject.SetActive(false);
         backgroundImage.enabled = true;
         canAct = false;
         infoText.text = "Temps écoulé ! \n" + scoreText.text;

@@ -32,17 +32,18 @@ public class PlayerCharacter : Entity
         _movementTarget = transform.position;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6)
         {
-            if (other.gameObject.TryGetComponent<Passenger>(out Passenger passenger))
+            Debug.Log("layer6");
+            if (other.gameObject.TryGetComponent(out Passenger passenger))
             {
                 if (!passenger.fraudeur) return;
                 passenger.fraudeur = false;
                 passenger.EndControl();
                 _score++;
-                scoreText.text = "Score : " + _score.ToString();
+                scoreText.text = "Score : " + _score;
             }
         }
     }
@@ -68,10 +69,7 @@ public class PlayerCharacter : Entity
                 if (hit.collider.gameObject.layer == 6)
                 {
                     Passenger passenger = hit.collider.gameObject.GetComponent<Passenger>();
-                    if (passenger.Control())
-                    {
-
-                    }
+                    passenger.Control();
                 }
             }
         }
