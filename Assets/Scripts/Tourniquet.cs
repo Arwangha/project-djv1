@@ -12,6 +12,9 @@ public class Tourniquet : MonoBehaviour
     [SerializeField] private float maxTargetZ;
     [SerializeField] private float minTargetX;
     [SerializeField] private float minTargetZ;
+    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject alarm;
+    private bool _upgraded;
     private List<Passenger> _passengers = new List<Passenger>();
     private bool _busy;
     void Start()
@@ -33,6 +36,19 @@ public class Tourniquet : MonoBehaviour
         if (!_busy) StartCoroutine(Validation());
     }
 
+    private IEnumerator ShortAlarm()
+    {
+        alarm.SetActive(true);
+        yield return new WaitForSeconds(validationTime);
+        alarm.SetActive(false);
+    }
+
+    public void Upgrade()
+    {
+        _upgraded = true;
+        door.SetActive(true);
+    }
+
     private IEnumerator AddPassenger(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -44,6 +60,10 @@ public class Tourniquet : MonoBehaviour
                 transform.position.y, 
                 Random.Range(minTargetZ, maxTargetZ)));
             _passengers.Add(passenger);
+            if (_upgraded)
+            {
+                passenger.fraudeur = false;
+            }
             MoveEveryOneForward();
             yield return new WaitForSeconds(validationTime);
         }
@@ -64,6 +84,10 @@ public class Tourniquet : MonoBehaviour
         Passenger passenger = _passengers.ElementAt(0);
         passenger.hasPassedGate = true;
         _passengers.Remove(passenger);
+        if (passenger.fraudeur)
+        {
+            StartCoroutine(ShortAlarm());
+        }
         StartCoroutine(AddPassenger(1));
         _busy = false;
     }
