@@ -8,13 +8,16 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private int _level;
     public static int UpgradePoints;
-    public static List<int> CompletedLevels = new List<int>();
+    public static List<int> CompletedLevels;
 
     void Start()
     {
         if (instance == null)
         {
             instance = this;
+            CompletedLevels = new List<int>();
+            CompletedLevels.Add(0);
+            CompletedLevels.Add(1);
         }
         else
         {

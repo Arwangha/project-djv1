@@ -196,8 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   angularSpeed: 360
-  loot: {fileID: 0}
-  id: 0
   speed: 17.2
   scoreText: {fileID: 1508534097}
 --- !u!1 &17691516
@@ -808,6 +806,14 @@ PrefabInstance:
     - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: validationTime
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: additionalPassengerSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: additionalPassengerFraudLikelihood
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3997113616948721853, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11411,6 +11417,14 @@ PrefabInstance:
       propertyPath: validationTime
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: additionalPassengerSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: additionalPassengerFraudLikelihood
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3997113616948721853, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -58.3
@@ -11659,6 +11673,14 @@ PrefabInstance:
     - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: validationTime
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: additionalPassengerSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: additionalPassengerFraudLikelihood
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3997113616948721853, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: m_LocalPosition.x
