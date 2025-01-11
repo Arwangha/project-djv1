@@ -12,12 +12,16 @@ public class Passenger : Entity
     private bool beingControlled;
     private NavMeshAgent _navMeshAgent;
     private bool _busy;
+        
+    private Animator _animator;
+
 
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         fraudeur = (Random.value < fraudLikelihood) && !upgraded;
         target = transform.position;
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void SetTarget(Vector3 target)
@@ -34,6 +38,14 @@ public class Passenger : Entity
     public void EndControl()
     {
         beingControlled = false;
+    }
+    
+    
+    public IEnumerator Fraud()
+    {
+        _animator.enabled = true;
+        yield return new WaitForSeconds(1f);
+        _animator.enabled = false;
     }
 
     public IEnumerator MoveForward()

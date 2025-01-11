@@ -18,10 +18,12 @@ public class Tourniquet : MonoBehaviour
     private bool _upgraded;
     private List<Passenger> _passengers = new List<Passenger>();
     private bool _busy;
+    private List<Animator> _animators = new List<Animator>();
     void Start()
     {
         StartCoroutine(AddPassenger(3));
         StartCoroutine(UpdateDelay());
+        _animators = GetComponentsInChildren<Animator>().ToList();
     }
 
     private IEnumerator UpdateDelay()
@@ -85,6 +87,19 @@ public class Tourniquet : MonoBehaviour
         }
     }
 
+    private IEnumerator StopAnim()
+    {
+        foreach (var animator in _animators)
+        {
+            animator.enabled = false;
+        }
+        yield return new WaitForSeconds(validationTime);
+        foreach (var animator in _animators)
+        {
+            animator.enabled = true;
+        }
+    }
+
     private IEnumerator Validation()
     {
         _busy = true;
@@ -96,6 +111,8 @@ public class Tourniquet : MonoBehaviour
         {
             StartCoroutine(ShortAlarm());
             LevelManager.Instance.releasedFraudeurs++;
+            StartCoroutine(passenger.Fraud());
+            StartCoroutine(StopAnim());
         }
         StartCoroutine(AddPassenger(1));
         _busy = false;

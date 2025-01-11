@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,9 +8,7 @@ public class PlayerCharacter : Entity
 {
     [SerializeField] private float speed = 4f;
     [SerializeField] private TMP_Text scoreText;
-
     private int _score;
-    //[SerializeField] private Animator animator;
 
     private Camera _mainCamera;
     private CharacterController _characterController;
@@ -26,8 +25,6 @@ public class PlayerCharacter : Entity
         _mainCamera = Camera.main;
         _characterController = GetComponent<CharacterController>();
         id = PlayerId;
-        //_runBoolHash = Animator.StringToHash("IsMoving");
-        //_shotTrigHash = Animator.StringToHash("Shoot");
         Instance = this;
         _movementTarget = transform.position;
         scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
