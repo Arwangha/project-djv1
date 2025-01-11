@@ -7,7 +7,6 @@ public class Passenger : Entity
     public bool fraudeur;
     public float fraudLikelihood;
     public bool hasPassedGate;
-    public bool upgraded;
     public Vector3 target;
     private bool beingControlled;
     private NavMeshAgent _navMeshAgent;
@@ -19,7 +18,7 @@ public class Passenger : Entity
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        fraudeur = (Random.value < fraudLikelihood) && !upgraded;
+        fraudeur = (Random.value < fraudLikelihood);
         target = transform.position;
         _animator = GetComponentInChildren<Animator>();
     }

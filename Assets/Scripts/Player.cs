@@ -24,7 +24,6 @@ public class PlayerCharacter : Entity
     {
         _mainCamera = Camera.main;
         _characterController = GetComponent<CharacterController>();
-        id = PlayerId;
         Instance = this;
         _movementTarget = transform.position;
         scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();

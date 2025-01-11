@@ -67,6 +67,7 @@ public class LevelManager : MonoBehaviour
         }
         scoreText.text = "";
         yield return new WaitForSeconds(3f);
+        GameManager.CompletedLevels.Add(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(0);
     }
 
