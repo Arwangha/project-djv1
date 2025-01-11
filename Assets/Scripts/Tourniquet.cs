@@ -13,6 +13,8 @@ public class Tourniquet : MonoBehaviour
     [SerializeField] private float maxTargetZ;
     [SerializeField] private float minTargetX;
     [SerializeField] private float minTargetZ;
+    [SerializeField] private float additionalPassengerSpeed;
+    [SerializeField] private float additionalPassengerFraudLikelihood;
     [SerializeField] private GameObject door;
     [SerializeField] private GameObject alarm;
     private bool _upgraded;
@@ -107,6 +109,12 @@ public class Tourniquet : MonoBehaviour
         Passenger passenger = _passengers.ElementAt(0);
         passenger.hasPassedGate = true;
         _passengers.Remove(passenger);
+        
+        if (!passenger.fraudeur)
+        {
+            passenger.fraudeur = Random.Range(0, 1) < additionalPassengerFraudLikelihood;
+        }
+        
         if (passenger.fraudeur)
         {
             StartCoroutine(ShortAlarm());
@@ -114,6 +122,9 @@ public class Tourniquet : MonoBehaviour
             StartCoroutine(passenger.Fraud());
             StartCoroutine(StopAnim());
         }
+        
+        passenger.SpeedIncrement(additionalPassengerSpeed);
+        
         StartCoroutine(AddPassenger(1));
         _busy = false;
     }

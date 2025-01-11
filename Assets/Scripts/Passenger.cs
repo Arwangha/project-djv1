@@ -23,6 +23,11 @@ public class Passenger : Entity
         _animator = GetComponentInChildren<Animator>();
     }
 
+    public void SpeedIncrement(float additionalSpeed)
+    {
+        _navMeshAgent.speed += additionalSpeed;
+    }
+
     public void SetTarget(Vector3 target)
     {
         this.target = target;
