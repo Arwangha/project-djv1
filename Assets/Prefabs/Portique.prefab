@@ -54,11 +54,13 @@ MonoBehaviour:
   passengerPrefab: {fileID: 7795344324365381545, guid: 72a810e61e11e41059a0ae0dfaa3d808, type: 3}
   offset: {x: 2.05, y: 0, z: -10.9}
   validationTime: 1.47
+  upgradeCost: 0
   maxTargetX: -50.81
   maxTargetZ: 11.05
   minTargetX: -59.5
   minTargetZ: 4.35
   door: {fileID: 8630353387603568159}
+  alarm: {fileID: 0}
 --- !u!135 &5568700622766097392
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1222,6 +1224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5683670448278643789}
+  - component: {fileID: 3747438790992302000}
   m_Layer: 7
   m_Name: Tourniquet
   m_TagString: Untagged
@@ -1248,6 +1251,27 @@ Transform:
   - {fileID: 7833425079645478267}
   m_Father: {fileID: 3997113616948721853}
   m_LocalEulerAnglesHint: {x: 158.231, y: 68.496, z: 49.255997}
+--- !u!95 &3747438790992302000
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8607249234863658229}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8150e56130b5544309e45dc0dee5ab25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8630353387603568159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,13 +1284,14 @@ GameObject:
   - component: {fileID: 2736637946606298312}
   - component: {fileID: 5536350805663109929}
   - component: {fileID: 7322460732576040866}
+  - component: {fileID: 8694755111929336812}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4309717635253444148
 Transform:
   m_ObjectHideFlags: 0
@@ -1354,6 +1379,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000005, y: 0.9999999, z: 1.0000005}
   m_Center: {x: 0.000011444099, y: 0, z: 0.000007629398}
+--- !u!95 &8694755111929336812
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630353387603568159}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1e38027e992c47e2af61617cc1db2a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8888725692262392204
 GameObject:
   m_ObjectHideFlags: 0

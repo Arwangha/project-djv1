@@ -11444,6 +11444,10 @@ PrefabInstance:
       propertyPath: upgradeCost
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2498494286148828823, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
+      propertyPath: validationTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3997113616948721853, guid: be603a4e51b134b15a8be5b2e563930d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.6
