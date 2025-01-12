@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -12,19 +10,13 @@ public class PlayerCharacter : Entity
 
     private Camera _mainCamera;
     private CharacterController _characterController;
-    private static readonly int PlayerId = 0;
 
-    public static PlayerCharacter Instance;
-
-    private int _runBoolHash;
-    private int _shotTrigHash;
     private Vector3 _movementTarget;
     
     protected void Awake()
     {
         _mainCamera = Camera.main;
         _characterController = GetComponent<CharacterController>();
-        Instance = this;
         _movementTarget = transform.position;
         scoreText.text = "Score : " + _score + "\nPoints d'amélioration : " + GameManager.UpgradePoints.ToString();
         Debug.Log(GameManager.UpgradePoints);

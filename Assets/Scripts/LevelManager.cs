@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -68,12 +67,10 @@ public class LevelManager : MonoBehaviour
         scoreText.text = "";
         yield return new WaitForSeconds(3f);
         GameManager.CompletedLevels.Add(SceneManager.GetActiveScene().buildIndex);
-        //Debug.Log(GameManager.CompletedLevels.Count);
-        //Debug.Log(GameManager.CompletedLevels.ElementAt(1));
+
         SceneManager.LoadScene(0);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (canAct)
