@@ -112,7 +112,7 @@ public class Tourniquet : MonoBehaviour
         
         if (!passenger.fraudeur)
         {
-            passenger.fraudeur = Random.Range(0, 1) < additionalPassengerFraudLikelihood;
+            passenger.fraudeur = Random.Range(0f, 1f) < additionalPassengerFraudLikelihood;
         }
         
         if (passenger.fraudeur)

@@ -8,7 +8,7 @@ public class Passenger : Entity
     public float fraudLikelihood;
     public bool hasPassedGate;
     public Vector3 target;
-    private bool beingControlled;
+    public bool beingControlled;
     private NavMeshAgent _navMeshAgent;
     private bool _busy;
         

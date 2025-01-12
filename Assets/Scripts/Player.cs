@@ -38,6 +38,7 @@ public class PlayerCharacter : Entity
             if (other.gameObject.TryGetComponent(out Passenger passenger))
             {
                 if (!passenger.fraudeur) return;
+                if (!passenger.beingControlled) return;
                 passenger.fraudeur = false;
                 passenger.EndControl();
                 _score++;

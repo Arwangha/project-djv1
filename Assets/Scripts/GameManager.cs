@@ -15,9 +15,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            CompletedLevels = new List<int>();
-            CompletedLevels.Add(0);
-            CompletedLevels.Add(1);
+            CompletedLevels ??= new List<int>();
         }
         else
         {
@@ -27,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel(int level)
     {
-        if (!CompletedLevels.Contains(level)) return;
+        if (!CompletedLevels.Contains(level - 1) && level != 1) return;
         SceneManager.LoadScene(level);
         _level = level;
     }

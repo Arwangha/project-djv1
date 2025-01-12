@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +31,6 @@ public class LevelManager : MonoBehaviour
         remainingTime.gameObject.SetActive(false);
         scoreText.text = "";
         infoText.text = "Prêt ?";
-        Debug.Log("here");
         backgroundImage.enabled = true;
         canAct = false;
         yield return new WaitForSeconds(1f);
@@ -68,6 +68,8 @@ public class LevelManager : MonoBehaviour
         scoreText.text = "";
         yield return new WaitForSeconds(3f);
         GameManager.CompletedLevels.Add(SceneManager.GetActiveScene().buildIndex);
+        //Debug.Log(GameManager.CompletedLevels.Count);
+        //Debug.Log(GameManager.CompletedLevels.ElementAt(1));
         SceneManager.LoadScene(0);
     }
 

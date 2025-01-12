@@ -4,12 +4,6 @@ public class UIHealthBar : MonoBehaviour
 {
     [SerializeField] private RectTransform healthBar;
 
-    private Camera mainCamera;
-
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
     
     public void SetVal(float value)
     {
